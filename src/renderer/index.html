@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidekick - Desktop HQ</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  
+  <div class="sidebar-container" id="sidebar">
+    <!-- Header/Active Agent Indicator (Optional) -->
+    
+    <!-- The Crew (Vertical Slots) -->
+    <div class="agent-slot" data-agent="pilot" id="slot-pilot">
+      <img src="assets/pilot.png" alt="The Pilot" class="agent-icon floating">
+      <span class="agent-label">The Pilot</span>
+    </div>
+
+    <div class="agent-slot" data-agent="chef" id="slot-chef">
+      <img src="assets/chef.png" alt="The Chef" class="agent-icon">
+      <span class="agent-label">The Chef</span>
+    </div>
+
+    <div class="agent-slot" data-agent="archivist" id="slot-archivist">
+      <img src="assets/archivist.png" alt="The Archivist" class="agent-icon">
+      <span class="agent-label">The Archivist</span>
+    </div>
+
+    <div class="agent-slot" data-agent="scribe" id="slot-scribe">
+      <img src="assets/scribe.png" alt="The Scribe" class="agent-icon">
+      <span class="agent-label">The Scribe</span>
+    </div>
+
+    <!-- Expanded Dynamic Content Area -->
+    <div class="expanded-content" id="content-area">
+      <div id="agent-header">
+        <h1 id="agent-name">The Pilot</h1>
+        <p class="agent-description" id="agent-desc">Main AI Orchestrator. Select a provider below.</p>
+      </div>
+      
+      <!-- Placeholder for Agent Dashboard UI -->
+      <div class="agent-body" style="margin-top: 24px;">
+        <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; min-height: 200px;">
+          <p style="color: rgba(255,255,255,0.4); font-size: 13px;">Waiting for input...</p>
+        </div>
+      </div>
+
+      <!-- Settings / System Tray like buttons at bottom -->
+      <div style="margin-top: auto; padding-bottom: 8px; display: flex; gap: 12px;">
+        <span style="font-size: 12px; color: var(--text-dim);">Lofi-Dark</span>
+        <span style="font-size: 12px; color: var(--text-dim); margin-left: auto;">v1.0.0</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="index.js"></script>
+</body>
+</html>
