@@ -203,6 +203,7 @@ body.sidebar-left {
 }
 
 body.sidebar-left .sidebar-container {
+  margin-left: 20px;
   margin-right: 0;
 }
 

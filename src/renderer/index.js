@@ -257,7 +257,7 @@ if (hideBtn) {
   hideBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     sidebar.classList.remove('expanded');
-    // window.electronAPI.send('hide-window');
+    window.electronAPI.send('hide-window');
   });
 }
 

@@ -33,6 +33,11 @@ function createWindow() {
 
   mainWindow.loadFile(path.join(__dirname, 'renderer', 'index.html'));
 
+  // Allow clicking through transparent parts when collapsed 
+  // (We'll handle this in index.js to toggle based on mouse hover)
+  
+  mainWindow.webContents.openDevTools({ mode: 'detach' });
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
@@ -62,6 +67,7 @@ function createTray() {
 
   tray.setToolTip('Sidekick - Desktop AI');
   tray.setContextMenu(contextMenu);
+  tray.on('double-click', () => toggleVisibility());
 }
 
 function toggleVisibility() {
@@ -109,4 +115,8 @@ ipcMain.on('switch-anchor', (event, side) => {
   } else {
     mainWindow.setX(width - sidebarWidth);
   }
+});
+
+ipcMain.on('hide-window', () => {
+  if (mainWindow) mainWindow.hide();
 });
