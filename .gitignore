@@ -6,7 +6,8 @@ dist/
 .gemini/
 .agent/
 .agents/
-out/
-build/
-.vscode/
 package-lock.json
+screenshots/
+dist/
+build/
+out/
