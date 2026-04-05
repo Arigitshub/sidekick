@@ -6,11 +6,10 @@
   <title>Sidekick - Desktop HQ</title>
   <link rel="stylesheet" href="index.css">
 </head>
-<body>
-  
   <div class="sidebar-container" id="sidebar">
-    <!-- Header/Active Agent Indicator (Optional) -->
-    
+    <!-- Grab Handle for Dragging -->
+    <div class="drag-handle"></div>
+
     <!-- The Crew (Vertical Slots) -->
     <div class="agent-slot" data-agent="pilot" id="slot-pilot">
       <img src="assets/pilot.png" alt="The Pilot" class="agent-icon floating">
@@ -30,6 +29,12 @@
     <div class="agent-slot" data-agent="scribe" id="slot-scribe">
       <img src="assets/scribe.png" alt="The Scribe" class="agent-icon">
       <span class="agent-label">The Scribe</span>
+    </div>
+
+    <!-- Global Settings Slot (Bottom) -->
+    <div class="agent-slot" data-agent="settings" id="slot-settings" style="margin-top: auto; margin-bottom: 0;">
+      <div style="font-size: 20px; filter: grayscale(1);">⚙️</div>
+      <span class="agent-label">Settings</span>
     </div>
 
     <!-- Expanded Dynamic Content Area -->

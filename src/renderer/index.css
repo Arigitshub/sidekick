@@ -180,6 +180,8 @@ body {
 
 /* Glass Card Utility */
 .glass-card {
+  --shadow-glow: 0 0 20px -5px var(--accent-primary);
+  --settings-accent: hsl(0, 0%, 50%);
   background: var(--card-bg);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border-glow);
@@ -193,6 +195,48 @@ body {
   background: hsla(230, 20%, 15%, 0.6);
   border-color: hsla(0, 0%, 100%, 0.2);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar Left Positioning */
+body.sidebar-left {
+  justify-content: flex-start;
+}
+
+body.sidebar-left .sidebar-container {
+  margin-right: 0;
+}
+
+body.sidebar-left .agent-label {
+  left: auto;
+  right: 70px;
+}
+
+body.sidebar-left .expanded-content {
+  order: 2;
+  margin-left: 0;
+  margin-right: 20px;
+  transform: translateX(-20px);
+}
+
+body.sidebar-left .sidebar-container:hover .expanded-content, 
+body.sidebar-left .sidebar-container.expanded .expanded-content {
+  transform: translateX(0);
+}
+
+.drag-handle {
+  width: 40px;
+  height: 4px;
+  background: var(--border-glow);
+  border-radius: 6px;
+  margin-bottom: 24px;
+  cursor: grab;
+  -webkit-app-region: drag;
+  transition: all 0.3s ease;
+}
+
+.drag-handle:hover {
+  background: var(--accent-primary);
+  box-shadow: 0 0 10px var(--accent-primary);
 }
 
 /* Agent Body Components */

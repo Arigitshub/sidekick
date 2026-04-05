@@ -98,3 +98,15 @@ ipcMain.on('toggle-click-through', (event, ignore) => {
     mainWindow.setIgnoreMouseEvents(ignore, { forward: true });
   }
 });
+
+ipcMain.on('switch-anchor', (event, side) => {
+  if (!mainWindow) return;
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+  const sidebarWidth = mainWindow.getBounds().width;
+  
+  if (side === 'left') {
+    mainWindow.setX(0);
+  } else {
+    mainWindow.setX(width - sidebarWidth);
+  }
+});

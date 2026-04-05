@@ -32,10 +32,70 @@ const agentData = {
     name: 'The Scribe',
     desc: 'Floating Sticky Notes. Captured at light speed.',
     render: renderScribe
+  },
+  settings: {
+    name: 'Configuration',
+    desc: 'Customize your Sidekick experience.',
+    render: renderSettings
   }
 };
 
 // --- Component Renderers ---
+
+function renderSettings() {
+  const isLeft = document.body.classList.contains('sidebar-left');
+  
+  agentBody.innerHTML = `
+    <div class="glass-card">
+      <p style="color: var(--accent-primary); font-weight: 600; margin-bottom: 12px;">Layout Anchor</p>
+      <div style="display: flex; gap: 8px;">
+        <button class="btn-icon ${!isLeft ? 'active' : ''}" id="anchor-right">Right Edge</button>
+        <button class="btn-icon ${isLeft ? 'active' : ''}" id="anchor-left">Left Edge</button>
+      </div>
+
+      <p style="color: var(--accent-primary); font-weight: 600; margin-top: 24px; margin-bottom: 12px;">Visual Theme</p>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="clipboard-item" onclick="setAppTheme('lofi')">🌆 Lofi-Dark</div>
+        <div class="clipboard-item" onclick="setAppTheme('cyberpunk')">🌃 Cyberpunk-Neon</div>
+        <div class="clipboard-item" onclick="setAppTheme('frost')">❄️ Clean-Frost</div>
+      </div>
+
+      <p style="color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 24px;">v1.2.0 - Premium HQ</p>
+    </div>
+  `;
+
+  document.getElementById('anchor-left').onclick = () => toggleAnchor(true);
+  document.getElementById('anchor-right').onclick = () => toggleAnchor(false);
+}
+
+function toggleAnchor(left) {
+  if (left) {
+    document.body.classList.add('sidebar-left');
+    localStorage.setItem('sidekick-anchor', 'left');
+    window.electronAPI.send('switch-anchor', 'left');
+  } else {
+    document.body.classList.remove('sidebar-left');
+    localStorage.setItem('sidekick-anchor', 'right');
+    window.electronAPI.send('switch-anchor', 'right');
+  }
+  renderSettings(); // Refresh buttons
+}
+
+function setAppTheme(theme) {
+  document.body.className = '';
+  if (theme !== 'lofi') document.body.classList.add(`theme-${theme}`);
+  localStorage.setItem('sidekick-theme', theme);
+  renderSettings();
+}
+
+// Load Persistent Settings
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('sidekick-theme');
+  const savedAnchor = localStorage.getItem('sidekick-anchor');
+  
+  if (savedTheme) setAppTheme(savedTheme);
+  if (savedAnchor === 'left') toggleAnchor(true);
+});
 
 function renderPilot() {
   agentBody.innerHTML = `
