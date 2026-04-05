@@ -64,6 +64,10 @@
     .logo { font-family: 'Outfit', sans-serif; font-size: 1.5rem; letter-spacing: -1px; }
     .logo span { color: var(--accent); }
 
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a { color: var(--text-dim); text-decoration: none; font-size: 14px; font-weight: 500; transition: 0.3s; }
+    .nav-links a:hover { color: white; }
+
     .hero {
       min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -78,6 +82,7 @@
       letter-spacing: -3px;
       background: linear-gradient(to bottom, #fff, rgba(255,255,255,0.6));
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
@@ -238,6 +243,11 @@
   <nav>
     <div class="logo">SIDEKICK<span>.</span></div>
     <div class="nav-links">
+      <a href="#crew">The Crew</a>
+      <a href="#docs">Docs</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#changelog">Changelog</a>
+      <a href="#team">Team</a>
       <a href="https://github.com/Arigitshub/sidekick" class="btn btn-secondary" style="padding: 10px 20px; font-size: 14px;">GitHub</a>
     </div>
   </nav>
@@ -251,8 +261,8 @@
       <a href="https://github.com/Arigitshub/sidekick" class="btn btn-primary">
         Get Sidekick 🚀
       </a>
-      <a href="#crew" class="btn btn-secondary">
-        Meet The Crew 
+      <a href="#docs" class="btn btn-secondary">
+        Read Docs
       </a>
     </div>
   </header>
@@ -304,6 +314,79 @@
     </div>
   </section>
 
+  <section id="docs" class="section-title" style="margin-top: 150px;">
+    <h2>The Documentation<span>.</span></h2>
+    <p>Everything you need to master your new Desktop Sidekick.</p>
+  </section>
+
+  <section class="crew-grid">
+    <div class="crew-card">
+      <h3>Quick Start 🛠️</h3>
+      <p>1. Clone the repository.</p>
+      <p>2. Run <code>npm install</code>.</p>
+      <p>3. Start with <code>npm start</code>.</p>
+      <p>4. Build the installer with <code>npm run dist</code>.</p>
+    </div>
+    <div class="crew-card">
+      <h3>Agent Logic 🤖</h3>
+      <p>Each agent lives in <code>src/renderer/index.js</code>. Learn how to plug in new AI providers or custom timers to your glassmorphic HQ.</p>
+    </div>
+    <div class="crew-card">
+      <h3>Theme Engine ✨</h3>
+      <p>Switch between Lofi-Dark, Cyberpunk-Neon, and Clean-Frost by adding classes to the <code>body</code> element. Persistence is baked in.</p>
+    </div>
+  </section>
+
+  <section id="playbook" class="section-title" style="margin-top: 150px;">
+    <h2>The Playbook<span>.</span></h2>
+    <p>High-performance recipes for the focus-obsessed creative.</p>
+  </section>
+
+  <section class="crew-grid">
+    <div class="crew-card" style="border-color: var(--accent);">
+      <h3>The Coder 💻</h3>
+      <p>Use <b>The Pilot</b> for debugging functions, <b>The Chef</b> for 25m sprints, and <b>The Archivist</b> to hold recurring code snippets.</p>
+    </div>
+    <div class="crew-card">
+      <h3>The Designer 🎨</h3>
+      <p>Utilize <b>The Scribe</b> to anchor design feedback as sticky notes directly on your workspace while using <b>The Pilot</b> for copy ideas.</p>
+    </div>
+  </section>
+
+  <section id="changelog" class="section-title" style="margin-top: 150px;">
+    <h2>Official Changelog<span>.</span></h2>
+    <p>The journey from a sidebar idea to a Desktop HQ.</p>
+  </section>
+
+  <section style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+    <div class="crew-card" style="margin-bottom: 20px;">
+      <h4 style="margin: 0; color: var(--accent);">[v1.2.1] - The Stability Patch</h4>
+      <p style="font-size: 14px; margin-top: 8px;">Fixed IPC Hide/Show logic and Left-side margin alignment. Tray double-click restoration enabled.</p>
+    </div>
+    <div class="crew-card" style="margin-bottom: 20px;">
+      <h4 style="margin: 0; color: var(--accent);">[v1.2.0] - The Individualist Update</h4>
+      <p style="font-size: 14px; margin-top: 8px;">Added Anchor Switching (Left/Right) and the ⚙️ Configuration Dashboard. Multi-theme persistence active.</p>
+    </div>
+  </section>
+
+  <section id="team" class="section-title" style="margin-top: 150px;">
+    <h2>The Founders<span>.</span></h2>
+    <p>Brought to you by the Sidekick HQ Core Team.</p>
+  </section>
+
+  <div style="display: flex; justify-content: center; gap: 40px; margin: 60px 0; flex-wrap: wrap;">
+    <div style="text-align: center;">
+      <img src="assets/pilot.png" style="width: 80px; border-radius: 50%; border: 2px solid var(--accent);">
+      <h4 style="margin: 10px 0 0;">Arigit</h4>
+      <p style="margin: 0; font-size: 12px;">Lead Architect</p>
+    </div>
+    <div style="text-align: center;">
+      <img src="assets/chef.png" style="width: 80px; border-radius: 50%; opacity: 0.6;">
+      <h4 style="margin: 10px 0 0;">Community</h4>
+      <p style="margin: 0; font-size: 12px;">Contributors</p>
+    </div>
+  </div>
+
   <section class="section-title" style="padding-bottom: 100px;">
     <h2>Build for Speed<span>.</span></h2>
     <p>Zero bloat. Atomic CSS. Native performance. Sidekick is the $50/mo experience, completely free.</p>
@@ -314,10 +397,11 @@
 
   <footer>
     <div class="footer-links">
-      <a href="#">Terms</a>
-      <a href="#">Privacy</a>
+      <a href="#docs">Docs</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#changelog">Changelog</a>
+      <a href="#team">Team</a>
       <a href="https://github.com/Arigitshub/sidekick">Source</a>
-      <a href="https://sidekick-premier-hq.surge.sh">Docs</a>
     </div>
     <p>&copy; 2026 Sidekick HQ. Created for the high-end desktop ecosystem.</p>
   </footer>
