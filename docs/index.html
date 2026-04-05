@@ -5,213 +5,321 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO & Viral Meta Tags -->
-  <title>Sidekick - The Premium AI Desktop HQ sidebar</title>
-  <meta name="description" content="Sidekick: A high-end, glassmorphic AI sidebar for Windows/Mac with a crew of micro-agents. The ultimate desktop productivity HQ.">
-  <meta name="keywords" content="AI sidebar, Electron app, open source, productivity tool, glassmorphism, desktop agents, Pomodoro, clipboard manager">
+  <title>Sidekick HQ - Premium AI Desktop Sidebar</title>
+  <meta name="description" content="Sidekick: The high-end, glassmorphic AI sidebar for Windows/Mac. Orchestrate your workflow with a crew of micro-agents (Pilot, Chef, Archivist, Scribe). Built for the focus-obsessed.">
+  <meta name="keywords" content="AI sidebar, desktop automation, glassmorphism, productivity app, electron, open source, AI companion">
   
-  <!-- OpenGraph / Social Media -->
-  <meta property="og:title" content="Sidekick: Your Desktop HQ">
-  <meta property="og:description" content="A premium AI-powered sidebar with micro-agents for your taskbar. Supercharge focus and speed.">
-  <meta property="og:image" content="https://sidekick-hq.surge.sh/assets/pilot.png">
+  <!-- Social Media Proofing -->
+  <meta property="og:title" content="Sidekick HQ: Your Desktop Companion">
+  <meta property="og:description" content="Supercharge your desktop with a premium AI-powered taskbar sidebar. 100% Open Source.">
+  <meta property="og:image" content="assets/pilot.png">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
   
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap');
     
     :root {
-      --bg: #050505;
-      --accent: hsl(260, 85%, 65%);
-      --accent-glow: hsla(260, 85%, 65%, 0.3);
-      --glass: rgba(255, 255, 255, 0.05);
-      --border: rgba(255, 255, 255, 0.1);
+      --bg: #030303;
+      --accent: hsl(265, 90%, 65%);
+      --accent-glow: hsla(265, 90%, 65%, 0.4);
+      --glass: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --text-dim: rgba(255, 255, 255, 0.5);
     }
+    
+    * { box-sizing: border-box; }
     
     body {
       margin: 0;
-      padding: 0;
       background: var(--bg);
       color: white;
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
+      line-height: 1.5;
     }
-    
-    header {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+
+    /* Selection Color */
+    ::selection { background: var(--accent); color: white; }
+
+    /* Animated Background */
+    .bg-gradient {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 80% 20%, var(--accent-glow) 0%, transparent 40%),
+                  radial-gradient(circle at 20% 80%, hsla(200, 80%, 40%, 0.1) 0%, transparent 40%);
+      z-index: -1;
+      filter: blur(80px);
+    }
+
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      padding: 20px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      z-index: 1000;
+    }
+    .logo { font-family: 'Outfit', sans-serif; font-size: 1.5rem; letter-spacing: -1px; }
+    .logo span { color: var(--accent); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center;
-      background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
-      padding: 20px;
+      padding: 120px 20px 60px;
     }
-    
+
     h1 {
       font-family: 'Outfit', sans-serif;
-      font-size: clamp(3rem, 8vw, 6rem);
-      margin-bottom: 0;
-      color: white;
-      letter-spacing: -2px;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      margin: 0; line-height: 0.9;
+      letter-spacing: -3px;
+      background: linear-gradient(to bottom, #fff, rgba(255,255,255,0.6));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    
+
+    .hero-pilot {
+      width: 140px; height: 140px;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 0 30px var(--accent-glow));
+      animation: float 6s ease-in-out infinite;
+    }
+
     .subtitle {
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      color: rgba(255, 255, 255, 0.6);
-      max-width: 600px;
-      margin-top: 10px;
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      color: var(--text-dim);
+      max-width: 680px;
+      margin-top: 24px;
+      font-weight: 500;
     }
-    
-    .cta-container {
-      margin-top: 40px;
-      display: flex;
-      gap: 20px;
+
+    .cta-stack {
+      margin-top: 50px;
+      display: flex; gap: 16px;
+      flex-wrap: wrap; justify-content: center;
     }
-    
+
     .btn {
-      padding: 14px 28px;
-      border-radius: 12px;
+      padding: 18px 36px;
+      border-radius: 100px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.1rem;
     }
-    
+
     .btn-primary {
-      background: var(--accent);
-      color: white;
-      box-shadow: 0 0 20px var(--accent-glow);
+      background: white;
+      color: black;
+      box-shadow: 0 10px 40px rgba(255,255,255,0.1);
     }
-    
     .btn-primary:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px var(--accent);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 15px 50px rgba(255,255,255,0.2);
     }
-    
+
     .btn-secondary {
       background: var(--glass);
-      border: 1px solid var(--border);
+      border: 1px solid var(--glass-border);
       color: white;
       backdrop-filter: blur(10px);
     }
-    
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--accent);
+      color: var(--accent);
     }
-    
-    .section {
-      padding: 100px 20px;
-      max-width: 1000px;
+
+    .section-title {
+      text-align: center;
+      margin-top: 100px;
+    }
+    .section-title h2 { font-family: 'Outfit', sans-serif; font-size: 3rem; margin: 0; }
+    .section-title p { color: var(--text-dim); width: 100%; max-width: 500px; margin: 10px auto; }
+
+    .crew-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 60px 40px;
+      max-width: 1400px;
       margin: 0 auto;
     }
-    
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 30px;
-      margin-top: 60px;
-    }
-    
-    .card {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      padding: 30px;
-      border-radius: 24px;
-      backdrop-filter: blur(20px);
-      transition: transform 0.3s ease;
-    }
-    
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: var(--accent);
-    }
-    
-    .agent-img {
-      width: 80px;
-      height: 80px;
-      margin-bottom: 20px;
-    }
-    
-    h2 { font-family: 'Outfit', sans-serif; font-size: 2rem; margin-bottom: 10px; }
-    p { color: rgba(255, 255, 255, 0.6); line-height: 1.6; }
-    
-    footer {
+
+    .crew-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+      border: 1px solid var(--glass-border);
+      border-radius: 32px;
       padding: 40px;
+      transition: all 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .crew-card:hover {
+      transform: translateY(-12px);
+      border-color: var(--accent);
+      box-shadow: 0 20px 60px -20px var(--accent-glow);
+    }
+    .crew-card img { width: 90px; height: 90px; margin-bottom: 24px; filter: grayscale(0.5); transition: 0.5s; }
+    .crew-card:hover img { filter: grayscale(0); transform: scale(1.1) rotate(5deg); }
+    .crew-card h3 { font-family: 'Outfit', sans-serif; font-size: 1.8rem; margin: 0 0 12px; }
+    .crew-card p { color: var(--text-dim); margin: 0; font-size: 1.1rem; }
+
+    .badge-viral {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: var(--accent);
+      color: white;
+      font-size: 10px; font-weight: 800;
+      padding: 2px 8px; border-radius: 4px;
+      opacity: 0; transition: 0.3s;
+    }
+    .crew-card:hover .badge-viral { opacity: 1; transform: scale(1.1); }
+
+    .preview-container {
+      margin: 120px auto;
+      width: 90%; max-width: 1000px;
+      background: linear-gradient(180deg, var(--glass-border), transparent);
+      border-radius: 40px;
+      padding: 2px;
+    }
+    .preview-box {
+      background: #000;
+      border-radius: 38px;
+      overflow: hidden;
+      aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .preview-box iframe { width: 100%; height: 100%; border: none; opacity: 0.8; }
+    .preview-tag {
+      position: absolute; bottom: 20px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      padding: 8px 16px; border-radius: 100px;
+      font-size: 12px; font-weight: 600;
+      border: 1px solid var(--glass-border);
+    }
+
+    footer {
+      padding: 80px 40px;
       text-align: center;
-      border-top: 1px solid var(--border);
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 0.9rem;
+      border-top: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.02);
     }
-    
-    /* Animation */
+    .footer-links { display: flex; justify-content: center; gap: 40px; margin-bottom: 30px; }
+    .footer-links a { color: var(--text-dim); text-decoration: none; font-weight: 500; transition: 0.3s; }
+    .footer-links a:hover { color: white; }
+
+    /* Keyframes */
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
+      0%, 100% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-20px) rotate(3deg); }
     }
-    
-    .hero-img {
-      width: 120px;
-      animation: float 4s ease-in-out infinite;
-      margin-bottom: 20px;
+
+    /* Responsive Brilliance */
+    @media (max-width: 768px) {
+      h1 { font-size: 4rem; letter-spacing: -2px; }
+      .nav-links { display: none; }
+      .crew-grid { padding: 30px 20px; }
+      .crew-card { padding: 30px; }
+      .hero { padding-top: 100px; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="assets/pilot.png" alt="Sidekick Pilot" class="hero-img">
-    <h1>Sidekick HQ</h1>
-    <p class="subtitle">Meet your AI-powered companion on the taskbar. A premium, glassmorphic desktop crew designed for speed.</p>
+  <div class="bg-gradient"></div>
+
+  <nav>
+    <div class="logo">SIDEKICK<span>.</span></div>
+    <div class="nav-links">
+      <a href="https://github.com/Arigitshub/sidekick" class="btn btn-secondary" style="padding: 10px 20px; font-size: 14px;">GitHub</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <img src="assets/pilot.png" alt="Pilot Hero" class="hero-pilot">
+    <h1>Desktop Intelligence<span>.</span></h1>
+    <p class="subtitle">A premium, glassmorphic AI sidebar with specialized micro-agents for the performance-obsessed workflow. 100% Open-Source.</p>
     
-    <div class="cta-container">
-      <a href="https://github.com/Arigitshub/sidekick" class="btn btn-primary">Dive into Code</a>
-      <a href="#crew" class="btn btn-secondary">Meet The Crew</a>
+    <div class="cta-stack">
+      <a href="https://github.com/Arigitshub/sidekick" class="btn btn-primary">
+        Get Sidekick 🚀
+      </a>
+      <a href="#crew" class="btn btn-secondary">
+        Meet The Crew 
+      </a>
     </div>
   </header>
 
-  <section id="crew" class="section">
-    <h2 style="text-align: center; font-size: 3rem;">Meet The Crew</h2>
-    <p style="text-align: center; max-width: 600px; margin: 0 auto;">A team of specialized micro-agents living right on the edge of your screen.</p>
-    
-    <div class="grid">
-      <div class="card">
-        <img src="assets/pilot.png" class="agent-img" alt="The Pilot">
-        <h2>The Pilot</h2>
-        <p>Your main AI navigator. Powered by Claude, GPT-4, and Gemini. Orchestrates everything.</p>
-      </div>
-      
-      <div class="card">
-        <img src="assets/chef.png" class="agent-img" alt="The Chef">
-        <h2>The Chef</h2>
-        <p>Minimalist Pomodoro at the top of your screen. Manages deep work blocks and breaks with focus.</p>
-      </div>
-      
-      <div class="card">
-        <img src="assets/archivist.png" class="agent-img" alt="The Archivist">
-        <h2>The Archivist</h2>
-        <p>A master of memory. Keeps your last 5 clipboard snippets organized and ready for instant access.</p>
-      </div>
-      
-      <div class="card">
-        <img src="assets/scribe.png" class="agent-img" alt="The Scribe">
-        <h2>The Scribe</h2>
-        <p>Captures your mind-dumps at light speed into floating sticky notes on your desktop.</p>
-      </div>
+  <div class="preview-container">
+    <div class="preview-box">
+      <!-- Symbolic UI Simulation -->
+       <div style="text-align: center;">
+         <div style="font-size: 4rem; margin-bottom: 20px;">💎</div>
+         <p style="font-size: 1.2rem; color: var(--accent);">Ultra-Vibrant Glassmorph Engine</p>
+         <p style="font-size: 0.9rem; color: var(--text-dim);">Always-on-top. Click-through. Physics-based transitions.</p>
+       </div>
+       <div class="preview-tag">SYSTEM v1.2.1 • STABLE</div>
+    </div>
+  </div>
+
+  <section id="crew" class="section-title">
+    <h2>The Crew<span>.</span></h2>
+    <p>A specialized team of desktop agents residing right on the edge of your workstation.</p>
+  </section>
+
+  <section class="crew-grid">
+    <div class="crew-card">
+      <div class="badge-viral">CORE</div>
+      <img src="assets/pilot.png" alt="The Pilot">
+      <h3>The Pilot</h3>
+      <p>The AI Orchestrator. Connects you to Claude, Gemini, and GPT-4 via a stunning minimal chat terminal.</p>
+    </div>
+
+    <div class="crew-card">
+      <div class="badge-viral">FOCUS</div>
+      <img src="assets/chef.png" alt="The Chef">
+      <h3>The Chef</h3>
+      <p>Modern Pomodoro master. Keeps your deep-work sessions sizzling with minimal, glassmorphic timers.</p>
+    </div>
+
+    <div class="crew-card">
+      <div class="badge-viral">SYSTEM</div>
+      <img src="assets/archivist.png" alt="The Archivist">
+      <h3>The Archivist</h3>
+      <p>Omnipresent clipboard memory. Keeps your last 5 complex snippets ready for rapid injection.</p>
+    </div>
+
+    <div class="crew-card">
+      <div class="badge-viral">CREATIVE</div>
+      <img src="assets/scribe.png" alt="The Scribe">
+      <h3>The Scribe</h3>
+      <p>Thought capture engine. Instant, floating sticky notes that reside on your desktop with physics.</p>
     </div>
   </section>
 
-  <section class="section" style="text-align: center;">
-    <h2>High-End Engineering</h2>
-    <p>Built with Electron + Node.js. 100% Open Source. 0 compromise on speed or aesthetics.</p>
-    <div style="margin-top: 40px; display: flex; justify-content: center; gap: 40px; opacity: 0.5;">
-      <span>Windows ✨</span>
-      <span>macOS ✨</span>
-      <span>Linux (Soon) 🛠️</span>
+  <section class="section-title" style="padding-bottom: 100px;">
+    <h2>Build for Speed<span>.</span></h2>
+    <p>Zero bloat. Atomic CSS. Native performance. Sidekick is the $50/mo experience, completely free.</p>
+    <div class="cta-stack" style="margin-top: 40px;">
+      <a href="https://github.com/Arigitshub/sidekick" class="btn btn-primary">Star on GitHub</a>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2026 Sidekick HQ. Built by the community for the focus-obsessed.</p>
+    <div class="footer-links">
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="https://github.com/Arigitshub/sidekick">Source</a>
+      <a href="https://sidekick-premier-hq.surge.sh">Docs</a>
+    </div>
+    <p>&copy; 2026 Sidekick HQ. Created for the high-end desktop ecosystem.</p>
   </footer>
 
 </body>
