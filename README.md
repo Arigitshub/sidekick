@@ -57,11 +57,11 @@ npm run dist
 ---
 
 ## 🗺️ The Infinite Roadmap
-- [x] Phase 1: **Alpha Baseline** (Architecture & Design Baseline)
-- [x] Phase 2: **The Crew v1.0** (Agent Initialization & Logic)
-- [x] Phase 3: **Intelligence Outpost** (Universal AI Core & API Persistence)
-- [x] Phase 4: **Outpost Audit** (Native Automation Testing & Packaging)
-- [ ] Phase 5: **Collective Signal** (Shared Team Workspaces & Cloud Sync)
+- [x] Phase 1: **Alpha Baseline** 🏁 (Architecture & Design Baseline)
+- [x] Phase 2: **The Crew v1.2** 🧑‍🍳 (Agent Implementation & Logic)
+- [x] Phase 3: **Intelligence Outpost** 👨‍✈️ (Universal AI Chat Core & Local Auth)
+- [x] Phase 4: **Outpost Audit** 🤖 (Native Playwright Automation & v1.3 Packaging)
+- [ ] Phase 5: **Collective Signal** 🛰️ (Next Gen: Shared Team Workspaces & Cloud Sync)
 
 ## 📄 License
 Sidekick HQ is licensed under the **MIT License**. Open-source, high-end, and free forever.
