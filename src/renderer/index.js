@@ -12,6 +12,10 @@ let timerInterval = null;
 let timeLeft = 25 * 60; // 25 minutes
 let isTimerRunning = false;
 
+// AI Chat State
+let chatHistory = [];
+let activeProvider = localStorage.getItem('sidekick-provider') || 'gemini';
+
 const agentData = {
   pilot: {
     name: 'The Pilot',
@@ -60,7 +64,13 @@ function renderSettings() {
         <div class="clipboard-item" onclick="setAppTheme('frost')">❄️ Clean-Frost</div>
       </div>
 
-      <p style="color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 24px;">v1.2.0 - Premium HQ</p>
+      <p style="color: var(--accent-primary); font-weight: 600; margin-top: 24px; margin-bottom: 12px;">AI Authentication</p>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <input type="password" placeholder="API Key (Claude/Gemini/GPT)" style="background: rgba(0,0,0,0.2); border: 1px solid var(--border-glow); padding: 8px 12px; border-radius: 8px; color: white; width: 100%;">
+        <p style="font-size: 10px; color: var(--text-dim);">Keys are stored locally in your Desktop HQ.</p>
+      </div>
+
+      <p style="color: rgba(255,255,255,0.4); font-size: 11px; margin-top: 24px;">v1.3.0 - Intelligence Outpost</p>
     </div>
   `;
 
@@ -98,19 +108,67 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderPilot() {
-  agentBody.innerHTML = `
-    <div class="glass-card">
-      <p style="color: var(--pilot-accent); font-weight: 600; margin-bottom: 12px;">Providers</p>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div class="clipboard-item">Claude 3.5 Sonnet</div>
-        <div class="clipboard-item">GPT-4o</div>
-        <div class="clipboard-item">Gemini 1.5 Pro (Active)</div>
+  const historyHTML = chatHistory.map(msg => `
+    <div style="margin-bottom: 12px; text-align: ${msg.isUser ? 'right' : 'left'}">
+      <div style="display: inline-block; padding: 8px 12px; border-radius: 12px; background: ${msg.isUser ? 'var(--accent-primary)' : 'rgba(255,255,255,0.05)'}; font-size: 13px; color: ${msg.isUser ? 'white' : 'var(--text-dim)'}; border: 1px solid var(--border-glow);">
+        ${msg.text}
       </div>
-      <div style="margin-top: 16px; display: flex; gap: 8px;">
-        <input type="text" placeholder="Ask anything..." style="background: rgba(0,0,0,0.2); border: 1px solid var(--border-glow); padding: 8px 12px; border-radius: 8px; color: white; width: 100%;">
+    </div>
+  `).join('');
+
+  agentBody.innerHTML = `
+    <div class="glass-card" style="display: flex; flex-direction: column; height: 100%;">
+      <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+        <button class="btn-icon ${activeProvider === 'claude' ? 'active' : ''}" onclick="setProvider('claude')">Claude</button>
+        <button class="btn-icon ${activeProvider === 'gemini' ? 'active' : ''}" onclick="setProvider('gemini')">Gemini</button>
+        <button class="btn-icon ${activeProvider === 'gpt' ? 'active' : ''}" onclick="setProvider('gpt')">GPT</button>
+      </div>
+
+      <div style="flex-grow: 1; overflow-y: auto; margin-bottom: 16px; padding-right: 4px;" id="chat-container">
+        ${historyHTML || '<p style="color: var(--text-dim); text-align: center; font-size: 12px;">No signal yet. What is your query?</p>'}
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <input type="text" id="chat-input" placeholder="Ask ${activeProvider === 'claude' ? 'Claude' : activeProvider === 'gemini' ? 'Gemini' : 'GPT'}..." 
+               style="background: rgba(0,0,0,0.2); border: 1px solid var(--border-glow); padding: 8px 12px; border-radius: 8px; color: white; width: 100%;">
+        <button class="btn-icon" onclick="handleChatSend()">Send</button>
       </div>
     </div>
   `;
+
+  const input = document.getElementById('chat-input');
+  if (input) {
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') handleChatSend();
+    });
+  }
+
+  // Scroll to bottom
+  const container = document.getElementById('chat-container');
+  if (container) container.scrollTop = container.scrollHeight;
+}
+
+function setProvider(p) {
+  activeProvider = p;
+  localStorage.setItem('sidekick-provider', p);
+  renderPilot();
+}
+
+function handleChatSend() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+
+  chatHistory.push({ isUser: true, text });
+  input.value = '';
+  renderPilot();
+
+  // Mock Sidekick Response
+  setTimeout(() => {
+    chatHistory.push({ isUser: false, text: `Analyzing signal via ${activeProvider.toUpperCase()}... ` + 
+      (activeProvider === 'claude' ? "Precision logic engaged." : activeProvider === 'gemini' ? "Multimodal inference active." : "Next-token prediction verified.") });
+    renderPilot();
+  }, 800);
 }
 
 function renderChef() {
