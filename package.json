@@ -1,17 +1,37 @@
 {
-  "name": "sidekick-ai",
+  "name": "sidekick",
+  "productName": "Sidekick Desktop HQ",
   "version": "1.0.0",
-  "description": "",
+  "description": "Premium AI Sidebar for Windows/Mac",
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.sidekick.hq",
+    "win": {
+      "target": "nsis",
+      "icon": "src/renderer/assets/pilot.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "src/renderer/assets/pilot.png",
+      "category": "public.app-category.productivity"
+    },
+    "nsis": {
+      "oneClick": true,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true
+    }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "electron": "^41.1.1"
+    "electron": "^41.1.1",
+    "electron-builder": "^26.8.1"
   }
 }

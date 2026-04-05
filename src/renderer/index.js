@@ -191,6 +191,16 @@ document.body.addEventListener('click', (e) => {
   }
 });
 
+// Hide Button Logic
+const hideBtn = document.getElementById('hide-btn');
+if (hideBtn) {
+  hideBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    sidebar.classList.remove('expanded');
+    // window.electronAPI.send('hide-window');
+  });
+}
+
 // Initial Render
 renderPilot();
 document.getElementById('slot-pilot').classList.add('active');
