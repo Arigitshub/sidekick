@@ -1,52 +1,72 @@
-# Sidekick: Your Desktop HQ 🦸‍♂️🤖
+# Sidekick: Your Desktop Intelligence HQ 🦸‍♂️🤖💎
 
-![Sidekick Header Logo](https://img.shields.io/badge/Sidekick-Desktop%20HQ-purple?style=for-the-badge&logo=electron-js)
-![Status: Alpha](https://img.shields.io/badge/Status-Alpha-orange?style=for-the-badge)
-![Glass: Frosted](https://img.shields.io/badge/Aesthetics-Glassmorphic-cyan?style=for-the-badge)
-[![Live Docs](https://img.shields.io/badge/Live-Documentation-260?style=for-the-badge&logo=github)](https://sidekick-hq.surge.sh)
+![Sidekick Header Logo](https://img.shields.io/badge/Sidekick-Intelligence%20HQ-purple?style=for-the-badge&logo=electron-js)
+![Status: v1.3.0 Stable](https://img.shields.io/badge/Status-v1.3.0%20Stable-green?style=for-the-badge)
+![Aesthetics: High--End Glass](https://img.shields.io/badge/Aesthetics-Glassmorphism%20v2.1-cyan?style=for-the-badge)
+[![Live Documentation](https://img.shields.io/badge/Live-Project%20Portal-260?style=for-the-badge&logo=github)](https://sidekick-premier-hq.surge.sh)
+![License: MIT](https://img.shields.io/badge/License-MIT-white?style=for-the-badge)
 
-**Sidekick** is a premium, open-source AI sidebar for Windows/Mac. It sits quietly on the edge of your screen, housing a crew of Micro-Agents designed to supercharge your focus, memory, and productivity.
+**Sidekick** is an ultra-premium, open-source AI sidebar for Windows/Mac. It resides directly on your screen's edge, housing a specialized crew of **Micro-Agents** designed to orchestrate your entire digital workflow with aesthetic perfection.
 
-## 🎨 The Design Philosophy
-Sidekick isn't just a tool; it's a **desktop experience**.
-- **High-End Glassmorphism**: Deep blurs, glowing borders, and HSL-tailored accent colors.
-- **Micro-Agents (The Crew)**: Minimalist vector characters with personality.
-- **Interactive Animations**: Smooth transitions and playful character states.
+---
 
-## 🤖 Meet The Crew
-| Agent | Role | Capability |
-| :--- | :--- | :--- |
-| **The Chef** 🧑‍🍳 | Pomodoro Timer | Manages deep work blocks and breaks. |
-| **The Archivist** 🤖 | Clipboard Manager | Keeps your last 5 clipboard items at the ready. |
-| **The Pilot** 👨‍✈️ | AI Navigator | Multi-provider chat terminal (GPT-4, Claude, Gemini). |
-| **The Scribe** ✍️ | Note Taker | Captures floating sticky notes instantly. |
+### 🌐 [Explore The Ultimate Project Portal](https://sidekick-premier-hq.surge.sh)
+*Experience the Docs, Playbooks, Timeline Changelog, and Founder's section in a stunning responsive dashboard.*
 
-## 🚀 Tech Stack
-- **Core**: Electron + Node.js
-- **UI**: Vanilla HTML/CSS (Glassmorphism design system)
-- **AI**: Multi-provider support via secure IPC
-- **Animations**: CSS Variable-driven Keyframes
+---
 
-## 🛠️ Getting Started
+## 🎨 Design Philosophy: The Stunning Outpost
+Sidekick is engineered for the focus-obsessed creative.
+- **Glassmorphism v2.1**: Deep `backdrop-filter` blurs, physics-based slide-in transitions, and HSL-tailored neon accents.
+- **Dynamic Anchoring**: Instantly teleport your HQ from the **Right Edge** to the **Left Edge** via the Configuration Dashboard.
+- **Visual Persistence**: Choose between **Lofi-Dark**, **Cyberpunk-Neon**, and **Clean-Frost** themes with automatic state recovery.
+
+## 🤖 Meet The Crew (The Specialized Agents)
+Sidekick features an agentic architecture where every micro-task has a dedicated expert.
+
+| Agent | Role | Capability | status |
+| :--- | :--- | :--- | :--- |
+| **The Pilot** 👨‍✈️ | AI Navigator | Multi-provider Chat Terminal (Claude 3.5, Gemini 1.5, GPT-4o). | **ACTIVE** |
+| **The Chef** 🧑‍🍳 | Focus Orchestrator | Kitchen-grade Pomodoro engine for elite 25m code/design sprints. | **ACTIVE** |
+| **The Archivist** 🤖 | Data Memory | High-performance clipboard history for your last 5 complex snippets. | **ACTIVE** |
+| **The Scribe** ✍️ | Capture Engine | Instant, floating sticky notes that anchor to your desktop surface. | **ACTIVE** |
+
+## 🚀 Technical Architecture
+Sidekick is a high-end **Electron + Node.js** stack designed for performance and local privacy.
+- **Universal AI Core**: Routing logic for multiple AI LLM providers with persistent local API auth.
+- **Multi-Process IPC**: Low-latency communication between the Main window, System Tray, and Agent Shadow-DOM.
+- **Native Automation**: Production-verified via a high-fidelity **Playwright** test suite for desktop logic consistency.
+
+---
+
+## 🏃‍♂️ Quick Start (Development Mode)
 ```bash
-# Clone the repository
-git clone https://github.com/username/sidekick.git
+# 1. Clone the master repository
+git clone https://github.com/Arigitshub/sidekick.git
 
-# Install dependencies
+# 2. Install the production dependencies
 npm install
 
-# Build & Run
+# 3. Launch the Intelligence Outpost
 npm start
+
+# 4. Burn a one-click Windows (.exe) Installer
+npm run dist
 ```
 
-## 🗺️ Roadmap
-- [x] Initial Architecture & Main Process
-- [x] Glassmorphic Design System
-- [x] The Crew Character Assets
-- [ ] **The Chef**: Pomodoro Logic
-- [ ] **The Archivist**: Clipboard Sync
-- [ ] **The Pilot**: AI Provider Integration
-- [ ] **The Scribe**: Floating STICKY NOTES logic.
+---
+
+## 🗺️ The Infinite Roadmap
+- [x] Phase 1: **Alpha Baseline** (Architecture & Design Baseline)
+- [x] Phase 2: **The Crew v1.0** (Agent Initialization & Logic)
+- [x] Phase 3: **Intelligence Outpost** (Universal AI Core & API Persistence)
+- [x] Phase 4: **Outpost Audit** (Native Automation Testing & Packaging)
+- [ ] Phase 5: **Collective Signal** (Shared Team Workspaces & Cloud Sync)
 
 ## 📄 License
-MIT License. Open source forever.
+Sidekick HQ is licensed under the **MIT License**. Open-source, high-end, and free forever.
+
+---
+
+### 🦸‍♂️ Built by **Sidekick HQ Core**
+*Engineered for the high-end desktop ecosystem.* 🚀⚖️🏁🌍✨🚀
